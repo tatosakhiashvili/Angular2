@@ -1,0 +1,19 @@
+<div class="main-container">
+  <!--
+  <a class="add-item" (click)="addTreeItem()">
+    <i class="fa fa-plus-square-o"></i>
+  </a>
+  <div class="clearfix"></div>
+  -->
+
+  <div class="child-container">
+    <app-tree [depth]="0" [items]="treeItemsArray"></app-tree>
+  </div>
+
+
+  <div [ngSwitch]="actionMode">
+    <app-add-tree *ngSwitchCase="actionMode.Add" (onSaveFinished)="resetMode()" [parentId]="parentId"></app-add-tree>
+    <app-edit-tree *ngSwitchCase="actionMode.Edit" (onSaveFinished)="resetMode()" [editItem]="editModeItem"></app-edit-tree>
+  </div>
+
+</div>

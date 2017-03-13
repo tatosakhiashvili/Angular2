@@ -1,0 +1,78 @@
+ul{
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    list-style: none; 
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: #333;
+
+    li{          
+        cursor: pointer;
+
+       .tree-item{
+           padding: 10px 15px;
+            border-top: 1px solid #ddd;
+
+            a {
+                display: inline-block;
+                padding: 0 5px 0 0;
+
+                i {
+                    width: 10px;
+                    font-size: 12px;
+                }
+            }  
+
+            .tree-name{
+                display: inline-block;
+                font-size: 16px;
+
+                .span-name{}
+
+                .span-input{
+                    display: none;
+                }
+            }
+
+            .item-actions{
+                display: inline-block;
+                float: right;     
+
+                a {
+                    vertical-align: top;
+                     
+                     &:nth-child(2){
+                       // margin-top: 1px;
+                     }         
+                }
+            }
+
+            .tree-depth(10);
+
+            &:hover{
+                background-color: #F5F5F5;
+            }
+
+            &.selected{
+                background-color: red;
+                color: white;
+            }
+        }
+   
+        &:first-child{                      
+            .tree-item{
+                &.depth-0{
+                    border-top: none;
+                }
+            }
+        }
+
+    }
+}
+ 
+.tree-depth(@index) when (@index > -1) {
+  &.depth-@{index} {
+    padding-left: (@index * 15px) + 20px;
+  }
+  .tree-depth(@index - 1);
+}

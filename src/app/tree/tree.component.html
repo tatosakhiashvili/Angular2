@@ -1,0 +1,16 @@
+<ul>
+  <li *ngFor="let tree of items">
+    <div class="tree-item depth-{{depth}}" [ngClass]="{'selected':tree.selected}" *ngIf="tree.visible || depth == 0">
+      <a (click)="showHideChildren(tree)"><i class="fa" [ngClass]="{'fa-plus':tree.children && tree.children.length > 0 && !tree.childrenAreShown, 'fa-minus':tree.children && tree.children.length > 0 && tree.childrenAreShown}"></i></a>
+      <span class="tree-name">
+        <span class="span-name">{{tree.name}}</span>
+      </span>
+      <span class="item-actions">
+        <a (click)="addNode(tree)" title="add child"><i class="fa fa-plus"></i></a>
+        <a (click)="editNode(tree)" title="edit child"><i class="fa fa-pencil-square-o"></i></a>
+        <a (click)="removeNode(tree.id)" title="remove child"><i class="fa fa-trash-o"></i></a>
+      </span>
+    </div>
+    <app-tree *ngIf="tree.childrenAreShown" [depth]="depth + 1" [items]="tree.children"></app-tree>
+  </li>
+</ul>
